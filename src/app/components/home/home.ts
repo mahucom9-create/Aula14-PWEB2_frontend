@@ -10,10 +10,11 @@ export class Home {
 
   nomeProduto: string = "Curso de Angular";
   anuncio: string = `O ${this.nomeProduto} está em promoção`;
-  idProduto: number = 123;
-  precoProduto: number = 2.59;
+  idProduto: number = 4;
+  precoProduto: number = 2.51;
   promocao: boolean = false;
   foto : string = "img/crud.png";
+  dataValidade = "2026-05-14"
 
   testeVariaveis(): void {
     // variáveis de string com concatenção
