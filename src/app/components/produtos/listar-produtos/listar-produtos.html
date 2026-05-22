@@ -1,7 +1,7 @@
 <h1 class="my-3 text-primary">
     Listar Produtos
-    
-    <button type="button" routerLink="/produtos/cadastrar"  class="btn btn-success mt-2 float-end">Cadastrar</button>
+
+    <button type="button" routerLink="/produtos/cadastrar" class="btn btn-success mt-2 float-end">Cadastrar</button>
 </h1>
 <div class="card shadow">
     <table class="table table-responsive table striped">
@@ -14,12 +14,14 @@
                 <th>Ações</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Curso de Angular</td>
-                <td>14/05/2026</td>
-                <td>R$ 500,00</td>
+        <tbody> 
+             @for (prod of listarProdutos; track prod.id) {
+              
+            <tr >
+                <td> {{prod.id}} </td>
+                <td> {{prod.nome}} </td>
+                <td> {{prod.validade | date: 'shortDate'}} </td>
+                <td> {{prod.precoProduto | currency : 'BRL'}} </td>
                 <td>
                     <button class="btn btn-warring">
                         <i class="fas fa-edit"></i>
@@ -29,6 +31,12 @@
                     </button>
                 </td>
             </tr>
+            }@empty {
+                <tr>
+                    <td colspan="4">Nenhum curso disponível no momento</td>
+                </tr>
+            }
+
         </tbody>
 
 
