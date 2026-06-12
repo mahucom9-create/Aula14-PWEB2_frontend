@@ -15,6 +15,8 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared-module';
+import { provideHttpClient } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
 
 registerLocaleData(localePt);
 
@@ -38,6 +40,8 @@ registerLocaleData(localePt);
   providers: [
     provideBrowserGlobalErrorListeners(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    provideHttpClient(),
+     provideToastr()
   ],
   bootstrap: [App]
 

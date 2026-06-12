@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Produtos } from '../../../Services/produtos';
+import { IProduto } from '../../../model/IProduto.model';
 
 @Component({
   selector: 'app-listar-produtos',
@@ -7,33 +9,20 @@ import { Component } from '@angular/core';
   styleUrl: './listar-produtos.css',
 })
 export class ListarProdutos {
-  listaStrings : string[] = ["Primeiro", "Segundo", "Terceiro"];
-  listarNumeros: number[] = [15, 15.18, 100];
+  listarProdutos: IProduto[] = []
+  
+  constructor(private produtosService: Produtos, private cd: ChangeDetectorRef ) {
+    this.carregarProdutos();
+  }
+  
 
-  objetoModelo = {
-    Nome : 'wall',
-    idade : 46,
-    altura : 1.99,
-    graduado :true
-  };
 
-  listarProdutos: any[] = [
-    {nome: 'Curso de Angular', precoProduto: 35.56, validade: '2026-05-21', id: 1},
-    {nome: 'Curso de Ionic', precoProduto: 50, validade: '2026-05-21', id: 2},
-    {id: 3, nome: 'Curso de Ionic Avançado', precoProduto: 50, validade: '2026-05-21'},
-  ];
+  carregarProdutos(): void{
+    this.produtosService.buscarTodos().subscribe(retorno =>{
+    this.listarProdutos = retorno;
 
-  constructor()
-  {
-    for (let item of this.listaStrings){
-      console.log(item);
-    }
-
-    for (const item of this.listarNumeros){
-      console.log(item);
-
-    }
-    console.log(this.objetoModelo);
-    console.log(this.objetoModelo.Nome);
+    this.cd.detectChanges();
+   
+    })
   }
 }
